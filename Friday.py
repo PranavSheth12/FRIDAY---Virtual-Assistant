@@ -40,7 +40,7 @@ engine.setProperty('voice',voices[1].id)
 
 print("Initializing Friday")
 speak("Initializing Friday ")
-
+chrome_path = 'Enter your path to chrome here' # Here goes your path to chrome.
 
 while True:
     query = takeCommand()
@@ -58,13 +58,11 @@ while True:
 
     elif 'open google' in query:
         url = 'google.com'
-        chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
         webbrowser.get(chrome_path).open(url)
 
     elif 'youtube' in query:
         query = query.replace("youtube","")
         query = query.replace(" ","+")
-        chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
         
         html_content = urllib.request.urlopen('http://www.youtube.com/results?q=%s'%query)
         search_results = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
@@ -73,7 +71,6 @@ while True:
 
     elif 'google map' in query:
         query = query.replace("google map","")
-        chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
         webbrowser.get(chrome_path).open('google.com/maps/place/?q=%s'%query)
 
     elif 'play music' in query:
@@ -83,7 +80,7 @@ while True:
         name = takeCommand()
         for i in songs:
             if name in i.lower():
-                os.startfile(os.path.join("E:\\Music",i))
+                os.startfile(os.path.join("Path to folder",i)) # Enter the path to the folder in which songs are kept.
 
     elif 'the time' in query:
         strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -99,7 +96,6 @@ while True:
         query = query.replace("google search","")
         
         for j in search(query, tld="co.in", num=1, stop=1, pause=2): 
-            chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
             webbrowser.get(chrome_path).open("https://google.com/search?q=%s"%query) 
             
     elif 'spotify' in query:
